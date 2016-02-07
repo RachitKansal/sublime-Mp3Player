@@ -6,6 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
+# For Sublime
+*.mp3
+*.pyc
+*.cache
+*.sublime-project
+*.sublime-workspace
+
 # Distribution / packaging
 .Python
 env/
