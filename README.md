@@ -10,5 +10,3 @@ It is an Mp3 media player plugin for Sublime Text 3, which uses vlc media player
 3. Use Sublime and every time the tracks will loaded automatically.
 
 # Screen Shots
-![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
-![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
