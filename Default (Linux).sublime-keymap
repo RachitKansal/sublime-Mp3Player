@@ -1,0 +1,23 @@
+[
+	{
+		"keys": ["ctrl+alt+o"], "command": "reloadrefresh"
+	},
+	{
+		"keys": ["ctrl+alt+n"], "command": "add"
+	},
+	{
+		"keys": ["ctrl+alt+m"], "command": "select"
+	},
+	{
+		"keys": ["ctrl+alt+u"], "command": "mp3_player"
+	},
+	{
+		"keys": ["ctrl+alt+j"], "command": "pause"
+	},
+	{
+		"keys": ["ctrl+alt+h"], "command": "previous"
+	},
+	{
+		"keys": ["ctrl+alt+k"], "command": "next"
+	}
+]

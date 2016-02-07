@@ -1,0 +1,44 @@
+[
+	{
+		"caption": "Preferences",
+		"id": "preferences",
+		"children":
+		[
+			{
+				"caption": "Mp3Player",
+				"id": "Mp3Player-settings",
+				"children":
+				[
+					{
+						"command": "add",
+						"caption": "Add/Remove"
+					},
+					{
+						"command": "reloadrefresh",
+						"caption": "Refresh"
+					},
+					{
+						"command": "mp3_player",
+						"caption": "Start/Stop"
+					},
+					{
+						"command": "next",
+						"caption": "Next"
+					},
+					{
+						"command": "previous",
+						"caption": "Previous"
+					},
+					{
+						"command": "select",
+						"caption": "Select"
+					},
+					{
+						"command": "pause",
+						"caption": "Pause/Resume"
+					}
+				]
+			}
+		]
+	}
+]
