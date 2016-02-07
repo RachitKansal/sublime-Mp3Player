@@ -5,7 +5,7 @@ It is an Mp3 media player plugin for Sublime Text 3, which uses vlc media player
 This plugin requires vlc media player to be already installed in the system, preferably the latest version.
 
 # Installation
-1. Install Package Control
+1. Install [Package Contorl](https://packagecontrol.io/installation)
 2. Using the Package Control:  
    a)  Inside Sublime, press ctrl+shift+p(Windows, Linux).  
    b)  Type install, then press enter with Package Control: Install Package selected.  
