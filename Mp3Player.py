@@ -6,7 +6,7 @@ Author:   	 Rachit Kansal
 E-mail: 	 rachitkansalgithub@gmail.com
 ==========================================================="""
 
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 
 import sublime, sublime_plugin
 import threading
@@ -40,7 +40,7 @@ class RefreshList:
 	def refresh(self):
 		for file in os.listdir(dir_path):
 			flag = 1
-			if file.endswith('.mp3'):
+			if file.endswith('.mp3') or file.endswith('.mp4'):
 				for title in player.titles_list:
 					if file == title:
 						flag = 0
@@ -55,7 +55,7 @@ class RefreshList:
 		for row in readfile_reader:
 			for file in os.listdir(row[0]):
 				flag = 1
-				if file.endswith('.mp3'):
+				if file.endswith('.mp3') or file.endswith('.mp4'):
 					for title in player.titles_list:
 						if file == title:
 							flag = 0
