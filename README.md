@@ -6,9 +6,9 @@ This plugin requires vlc media player to be already installed in the system, pre
 
 # Installation
 1. Install [Package Contorl](https://packagecontrol.io/installation)
-2. Using the [Package Contorl](https://packagecontrol.io/docs/usage):  
-   a)  Inside Sublime, press ``ctrl+shift+p``(Windows, Linux).  
-   b)  Type ``install``, then press ``enter`` with ``Package Control: Install Package`` selected.  
+2. Using the [Package Contorl](https://packagecontrol.io/docs/usage):
+   a)  Inside Sublime, press ``ctrl+shift+p``(Windows, Linux).
+   b)  Type ``install``, then press ``enter`` with ``Package Control: Install Package`` selected.
    c)  Type ``Mp3Player``, then press ``enter`` with the ``Mp3Player`` plugin selected.
 3. Use Sublime and every time the tracks will loaded automatically.
 
@@ -21,6 +21,6 @@ This is the sublime menu under preferences, which contains a list of all the fun
 
 ![Mp3Player Menu](/ScreenShot/Mp3Player Menu.png?raw=true "Mp3Player Menu")
 
-This is displays the track which is running and also gives other status messages like "Player Stopped" or "Player Pause", etc.
+This is to display the track which is running and also gives other status messages like "Player Stopped" or "Player Pause", etc.
 
 ![Status Bar](/ScreenShot/Status Bar.png?raw=true "Status Bar")

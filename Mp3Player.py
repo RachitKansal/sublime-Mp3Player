@@ -117,17 +117,17 @@ class PreviousCommand(sublime_plugin.TextCommand):
 			player.set_media(player.media_list_mod[player.index])
 			sublime.status_message(player.titles_list[player.index])
 			player.play()
-		except IndexError:
+		except Exception:
 			sublime.status_message("Add a Song path")
 
 class NextCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
-		print(player.titles_list)
-		if(player.index == len(player.titles_list) - 1):
-			player.index = 0
-		else:
-			player.index = player.index + 1
 		try:
+			if(player.index == len(player.titles_list) - 1):
+				player.index = 0
+			else:
+				player.index = player.index + 1
+
 			if(os.path.exists(player.path_list[player.index]) == False):
 				if(player.index == len(player.titles_list) - 1):
 					player.index = 0
@@ -135,30 +135,32 @@ class NextCommand(sublime_plugin.TextCommand):
 			player.set_media(player.media_list_mod[player.index])
 			sublime.status_message(player.titles_list[player.index])
 			player.play()
-		except IndexError:
+		except Exception:
 			sublime.status_message("Add a Song path")
 
 class Shuffle(sublime_plugin.TextCommand):
 	def run(self, edit):
 		try:
-			shuffle = random.randint(0, len(player.titles_list) - 1)
-			if(player.index == len(player.titles_list) - 1):
-				player.index = 0
+			shuffle = random.randint(1, len(player.titles_list))
+			if(player.index == 0):
+				player.index = shuffle
 			else:
-				player.index = player.index + 1
+				player.index = shuffle
+
 			if(os.path.exists(player.path_list[player.index]) == False):
 				if(player.index == len(player.titles_list) - 1):
-					player.index = shuffle
+					player.index = player.index - 1
 				reload_lists()
 			player.set_media(player.media_list_mod[player.index])
 			sublime.status_message(player.titles_list[player.index])
 			player.play()
-		except:
-			sublime.status_message("Add a Song path first")
+		except Exception:
+			sublime.status_message("Add a Song path")
 
 class SelectCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.view.window().show_quick_panel(player.titles_list, self.on_done)
+
 	def on_done(self, user_input):
 		if(user_input == -1):
 			sublime.status_message('No option selected')

@@ -1,0 +1,10 @@
+[
+    {"caption": "Mp3Player: Add/Remove", "command": "add"},
+    {"caption": "Mp3Player: Next", "command": "next"},
+    {"caption": "Mp3Player: Pause/Resume", "command": "pause"},
+    {"caption": "Mp3Player: Previous", "previous": "definition"},
+    {"caption": "Mp3Player: Refresh", "command": "reloadrefresh"},
+    {"caption": "Mp3Player: Select", "command": "select"},
+    {"caption": "Mp3Player: Shuffle", "command": "shuffle"},
+    {"caption": "Mp3Player: Start/Stop", "command": "mp3_player"}
+]
