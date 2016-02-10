@@ -41,7 +41,7 @@ class RefreshList:
 	def refresh(self):
 		for file in os.listdir(dir_path):
 			flag = 1
-			if file.endswith('.mp3') or file.endswith('.mp4'):
+			if file.endswith('.mp3'):
 				for title in player.titles_list:
 					if file == title:
 						flag = 0
@@ -56,7 +56,7 @@ class RefreshList:
 		for row in readfile_reader:
 			for file in os.listdir(row[0]):
 				flag = 1
-				if file.endswith('.mp3') or file.endswith('.mp4'):
+				if file.endswith('.mp3'):
 					for title in player.titles_list:
 						if file == title:
 							flag = 0
@@ -109,13 +109,16 @@ class PreviousCommand(sublime_plugin.TextCommand):
 			player.index = len(player.titles_list) - 1
 		else:
 			player.index = player.index - 1
-		if(os.path.exists(player.path_list[player.index]) == False):
-			if(player.index == len(player.titles_list) - 1):
-				player.index = player.index - 1
-			reload_lists()
-		player.set_media(player.media_list_mod[player.index])
-		sublime.status_message(player.titles_list[player.index])
-		player.play()
+		try:
+			if(os.path.exists(player.path_list[player.index]) == False):
+				if(player.index == len(player.titles_list) - 1):
+					player.index = player.index - 1
+				reload_lists()
+			player.set_media(player.media_list_mod[player.index])
+			sublime.status_message(player.titles_list[player.index])
+			player.play()
+		except IndexError:
+			sublime.status_message("Add a Song path")
 
 class NextCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
@@ -123,29 +126,34 @@ class NextCommand(sublime_plugin.TextCommand):
 			player.index = 0
 		else:
 			player.index = player.index + 1
-		if(os.path.exists(player.path_list[player.index]) == False):
-			if(player.index == len(player.titles_list) - 1):
-				player.index = 0
-			reload_lists()
-		player.set_media(player.media_list_mod[player.index])
-		sublime.status_message(player.titles_list[player.index])
-		player.play()
+		try:
+			if(os.path.exists(player.path_list[player.index]) == False):
+				if(player.index == len(player.titles_list) - 1):
+					player.index = 0
+				reload_lists()
+			player.set_media(player.media_list_mod[player.index])
+			sublime.status_message(player.titles_list[player.index])
+			player.play()
+		except IndexError:
+			sublime.status_message("Add a Song path")
 
 class Shuffle(sublime_plugin.TextCommand):
 	def run(self, edit):
-		player.titles_list = random.sample(player.titles_list, len(player.titles_list) - 1)
-		if(player.index == len(player.titles_list) - 1):
-			player.index = 0
-		else:
-			player.index = player.index + 1
-		if(os.path.exists(player.path_list[player.index]) == False):
+		try:
+			shuffle = random.randint(0, len(player.titles_list) - 1)
 			if(player.index == len(player.titles_list) - 1):
 				player.index = 0
-			reload_lists()
-		player.set_media(player.media_list_mod[player.index])
-		sublime.status_message(player.titles_list[player.index])
-		player.play()
-
+			else:
+				player.index = player.index + 1
+			if(os.path.exists(player.path_list[player.index]) == False):
+				if(player.index == len(player.titles_list) - 1):
+					player.index = shuffle
+				reload_lists()
+			player.set_media(player.media_list_mod[player.index])
+			sublime.status_message(player.titles_list[player.index])
+			player.play()
+		except:
+			sublime.status_message("Add a file path first")
 
 class SelectCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
@@ -153,7 +161,6 @@ class SelectCommand(sublime_plugin.TextCommand):
 	def on_done(self, user_input):
 		if(user_input == -1):
 			sublime.status_message('No option selected')
-			player.set_media(player.media_list_mod[player.index])
 		else:
 			player.index = user_input
 			if(os.path.exists(player.path_list[player.index]) == False):
