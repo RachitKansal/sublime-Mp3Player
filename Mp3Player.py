@@ -41,7 +41,7 @@ class RefreshList:
 	def refresh(self):
 		for file in os.listdir(dir_path):
 			flag = 1
-			if file.endswith('.mp3'):
+			if file.endswith('.mp3') or file.endswith(".mp4"):
 				for title in player.titles_list:
 					if file == title:
 						flag = 0
@@ -56,7 +56,7 @@ class RefreshList:
 		for row in readfile_reader:
 			for file in os.listdir(row[0]):
 				flag = 1
-				if file.endswith('.mp3'):
+				if file.endswith('.mp3') or file.endswith(".mp4"):
 					for title in player.titles_list:
 						if file == title:
 							flag = 0
@@ -122,6 +122,7 @@ class PreviousCommand(sublime_plugin.TextCommand):
 
 class NextCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
+		print(player.titles_list)
 		if(player.index == len(player.titles_list) - 1):
 			player.index = 0
 		else:
@@ -153,7 +154,7 @@ class Shuffle(sublime_plugin.TextCommand):
 			sublime.status_message(player.titles_list[player.index])
 			player.play()
 		except:
-			sublime.status_message("Add a file path first")
+			sublime.status_message("Add a Song path first")
 
 class SelectCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
@@ -187,7 +188,7 @@ class AddCommand(sublime_plugin.TextCommand):
 			add_remove_flag = -1
 		if(add_remove_flag == 1):
 			if(os.path.exists(user_input)):
-				if(user_input.endswith('.mp3')):
+				if(user_input.endswith('.mp3') or user_input.endswith(".mp4")):
 					sublime.status_message('Give path to directory')
 				else:
 					flag = 1
