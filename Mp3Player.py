@@ -11,7 +11,6 @@ __version__ = '1.2.0'
 import sublime, sublime_plugin
 import threading
 import platform
-import random
 import time
 import csv
 import os
@@ -131,25 +130,6 @@ class NextCommand(sublime_plugin.TextCommand):
 			if(os.path.exists(player.path_list[player.index]) == False):
 				if(player.index == len(player.titles_list) - 1):
 					player.index = 0
-				reload_lists()
-			player.set_media(player.media_list_mod[player.index])
-			sublime.status_message(player.titles_list[player.index])
-			player.play()
-		except Exception:
-			sublime.status_message("Add a Song path")
-
-class Shuffle(sublime_plugin.TextCommand):
-	def run(self, edit):
-		try:
-			shuffle = random.randint(1, len(player.titles_list))
-			if(player.index == 0):
-				player.index = shuffle
-			else:
-				player.index = shuffle
-
-			if(os.path.exists(player.path_list[player.index]) == False):
-				if(player.index == len(player.titles_list) - 1):
-					player.index = player.index - 1
 				reload_lists()
 			player.set_media(player.media_list_mod[player.index])
 			sublime.status_message(player.titles_list[player.index])

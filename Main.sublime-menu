@@ -37,10 +37,6 @@
 						"command": "pause",
 						"caption": "Pause/Resume"
 					},
-					{
-						"command": "shuffle",
-						"caption": "Shuffle"
-					}
 				]
 			}
 		]
