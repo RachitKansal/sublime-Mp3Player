@@ -6,7 +6,7 @@ Author:   	 Rachit Kansal
 E-mail: 	 rachitkansalgithub@gmail.com
 ==========================================================="""
 
-__version__ = '1.0.0'
+__version__ = '1.2.0'
 
 import sublime, sublime_plugin
 import threading
@@ -40,7 +40,7 @@ class RefreshList:
 	def refresh(self):
 		for file in os.listdir(dir_path):
 			flag = 1
-			if file.endswith('.mp3'):
+			if file.endswith('.mp3') or file.endswith(".mp4"):
 				for title in player.titles_list:
 					if file == title:
 						flag = 0
@@ -55,7 +55,7 @@ class RefreshList:
 		for row in readfile_reader:
 			for file in os.listdir(row[0]):
 				flag = 1
-				if file.endswith('.mp3'):
+				if file.endswith('.mp3') or file.endswith(".mp4"):
 					for title in player.titles_list:
 						if file == title:
 							flag = 0
@@ -108,31 +108,39 @@ class PreviousCommand(sublime_plugin.TextCommand):
 			player.index = len(player.titles_list) - 1
 		else:
 			player.index = player.index - 1
-		if(os.path.exists(player.path_list[player.index]) == False):
-			if(player.index == len(player.titles_list) - 1):
-				player.index = player.index - 1
-			reload_lists()
-		player.set_media(player.media_list_mod[player.index])
-		sublime.status_message(player.titles_list[player.index])
-		player.play()
+		try:
+			if(os.path.exists(player.path_list[player.index]) == False):
+				if(player.index == len(player.titles_list) - 1):
+					player.index = player.index - 1
+				reload_lists()
+			player.set_media(player.media_list_mod[player.index])
+			sublime.status_message(player.titles_list[player.index])
+			player.play()
+		except Exception:
+			sublime.status_message("Add a Song path")
 
 class NextCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
-		if(player.index == len(player.titles_list) - 1):
-			player.index = 0
-		else:
-			player.index = player.index + 1
-		if(os.path.exists(player.path_list[player.index]) == False):
+		try:
 			if(player.index == len(player.titles_list) - 1):
 				player.index = 0
-			reload_lists()
-		player.set_media(player.media_list_mod[player.index])
-		sublime.status_message(player.titles_list[player.index])
-		player.play()
+			else:
+				player.index = player.index + 1
+
+			if(os.path.exists(player.path_list[player.index]) == False):
+				if(player.index == len(player.titles_list) - 1):
+					player.index = 0
+				reload_lists()
+			player.set_media(player.media_list_mod[player.index])
+			sublime.status_message(player.titles_list[player.index])
+			player.play()
+		except Exception:
+			sublime.status_message("Add a Song path")
 
 class SelectCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		self.view.window().show_quick_panel(player.titles_list, self.on_done)
+
 	def on_done(self, user_input):
 		if(user_input == -1):
 			sublime.status_message('No option selected')
@@ -162,7 +170,7 @@ class AddCommand(sublime_plugin.TextCommand):
 			add_remove_flag = -1
 		if(add_remove_flag == 1):
 			if(os.path.exists(user_input)):
-				if(user_input.endswith('.mp3')):
+				if(user_input.endswith('.mp3') or user_input.endswith(".mp4")):
 					sublime.status_message('Give path to directory')
 				else:
 					flag = 1
